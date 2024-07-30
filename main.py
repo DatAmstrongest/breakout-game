@@ -18,4 +18,8 @@ platform_manager = PlatformManager()
 block_manager.create_blocks()
 screen.update()
 
+while(game_is_on):
+    ball_manager.move_ball()
+    screen.update()
+
 screen.exitonclick()
