@@ -13,7 +13,7 @@ screen.tracer(0)
 game_is_on = True
 block_manager = BlockManager()
 ball_manager = BallManager()
-platform_manager = PlatformManager()
+platform_manager = PlatformManager(screen=screen)
 
 block_manager.create_blocks()
 screen.update()
