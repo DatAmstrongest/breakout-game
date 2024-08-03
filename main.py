@@ -24,9 +24,9 @@ while(game_is_on):
     block_index = ball_manager.is_hit_to_block(block_manager.blocks)
     if block_index >= 0:
         block_manager.delete_block(block_index=block_index)
-        ball_manager.change_direction(is_block_hit=True)
+        ball_manager.change_direction(is_block_hit=True, platform=platform_manager.platform)
     else:
-        ball_manager.change_direction(is_block_hit=False)
+        ball_manager.change_direction(is_block_hit=False, platform=platform_manager.platform)
     screen.update()
 
 screen.exitonclick()

@@ -3,7 +3,7 @@ from turtle import Turtle
 CURRENT_X_DIRECTION = 1
 CURRENT_Y_DIRECTION = 1
 SPEED = 3
-HIT_DISTANCE = 40
+HIT_DISTANCE = 30
 X_BOUNDARY = 357
 Y_BOUNDARY = 300
 
@@ -30,6 +30,12 @@ class BallManager():
         return -1
     
 
+    def is_hit_platform(self, platform):
+        if self.ball.distance(platform) <= HIT_DISTANCE:
+            return True
+        return False
+    
+
     def is_hit_horizontal_border(self):
         return self.ball.xcor() >= X_BOUNDARY or self.ball.xcor() <= X_BOUNDARY*-1 
     
@@ -38,7 +44,7 @@ class BallManager():
         return self.ball.ycor() >= Y_BOUNDARY or self.ball.ycor() <= -1*Y_BOUNDARY
     
 
-    def change_direction(self, is_block_hit):
+    def change_direction(self, is_block_hit, platform):
         global CURRENT_X_DIRECTION
         global CURRENT_Y_DIRECTION
 
@@ -48,5 +54,8 @@ class BallManager():
             CURRENT_X_DIRECTION = CURRENT_X_DIRECTION*(-1)
         elif self.is_hit_vertical_border():
             CURRENT_Y_DIRECTION = CURRENT_Y_DIRECTION*(-1)
+        elif self.is_hit_platform(platform):
+            CURRENT_Y_DIRECTION = CURRENT_Y_DIRECTION*(-1)
+
 
 
