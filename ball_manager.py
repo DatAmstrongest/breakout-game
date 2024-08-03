@@ -8,15 +8,19 @@ X_BOUNDARY = 357
 Y_BOUNDARY = 300
 
 class BallManager():
-    def __init__(self):
-        self.create_ball()
 
     def create_ball(self):
+        global CURRENT_X_DIRECTION
+        global CURRENT_Y_DIRECTION
+
         self.ball = Turtle()
         self.ball.color("grey")
         self.ball.shape("circle")
         self.ball.penup()
         self.ball.goto(0,-225)
+
+        CURRENT_X_DIRECTION = 1
+        CURRENT_Y_DIRECTION = 1
 
     def move_ball(self):
         self.ball.goto(self.ball.xcor()+SPEED*CURRENT_X_DIRECTION, self.ball.ycor()+SPEED*CURRENT_Y_DIRECTION)
@@ -40,8 +44,12 @@ class BallManager():
         return self.ball.xcor() >= X_BOUNDARY or self.ball.xcor() <= X_BOUNDARY*-1 
     
 
-    def is_hit_vertical_border(self):
-        return self.ball.ycor() >= Y_BOUNDARY or self.ball.ycor() <= -1*Y_BOUNDARY
+    def is_hit_vertical_upper_border(self):
+        return self.ball.ycor() >= Y_BOUNDARY 
+    
+
+    def is_hit_vertical_lower_border(self):
+        return self.ball.ycor() <= -1*Y_BOUNDARY
     
 
     def change_direction(self, is_block_hit, platform):
@@ -52,10 +60,16 @@ class BallManager():
             CURRENT_Y_DIRECTION = CURRENT_Y_DIRECTION*(-1)
         elif self.is_hit_horizontal_border():
             CURRENT_X_DIRECTION = CURRENT_X_DIRECTION*(-1)
-        elif self.is_hit_vertical_border():
+        elif self.is_hit_vertical_upper_border():
             CURRENT_Y_DIRECTION = CURRENT_Y_DIRECTION*(-1)
+
         elif self.is_hit_platform(platform):
             CURRENT_Y_DIRECTION = CURRENT_Y_DIRECTION*(-1)
+
+    def delete_ball(self):
+        self.ball.clear()
+        self.ball.ht()
+        del self.ball
 
 
 

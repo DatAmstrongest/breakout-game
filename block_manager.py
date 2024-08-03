@@ -20,8 +20,17 @@ class BlockManager():
                 block.goto(-320+70*c, 25+50*r)
                 self.blocks.append(block)
 
+
     def delete_block(self, block_index):
         block = self.blocks.pop(block_index)
         block.clear()
         block.ht()
         del block
+
+    
+    def delete_all_blocks(self):
+        for block in self.blocks:
+            block.clear()
+            block.ht()
+            del block
+
