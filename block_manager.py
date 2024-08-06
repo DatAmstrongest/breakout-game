@@ -17,7 +17,7 @@ class BlockManager():
                 block.shape("square")
                 block.shapesize(stretch_wid=2, stretch_len=3)
                 block.penup()
-                block.goto(-320+70*c, 25+50*r)
+                block.goto(-320+70*c, 50*r)
                 self.blocks.append(block)
 
 

@@ -1,6 +1,6 @@
 from turtle import Turtle
 
-SPEED = 20
+SPEED = 30
 class PlatformManager():
     def __init__(self, screen):
         self.create_platform(screen)
